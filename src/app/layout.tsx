@@ -4,11 +4,23 @@ import NavBar from '@/app/components/NavBar';
 
 import './globals.css';
 
-const poppins = Poppins({ weight: ['300', '400', '500', '600', '700', '900'], subsets: ['latin'] });
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700', '900'],
+  subsets: ['latin'],
+  preload: true,
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   title: 'Saurabh Kr. Suryan',
-  description: 'Built with ❤️',
+  description: ' a tinkerer, perfectionist, who loves over engineering & building beautiful UIs',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://saurabhsuryan.in',
+    title: 'Saurabh Kr. Suryan',
+    description: ' a tinkerer, perfectionist, who loves over engineering & building beautiful UIs',
+  },
 };
 
 export default function RootLayout({

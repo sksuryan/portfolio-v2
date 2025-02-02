@@ -20,6 +20,7 @@ export const ExperienceData: Array<{ companyName: string; position: string; dura
       '- Currently part of the **Supply chain org** working on the packer app.\n' +
       '- Wrote **error boundary** to detect app crashes and log them to sentry and mixpanel.\n' +
       '- Wrote **GitHub actions** to automate build generation for android builds using fastlane. \n' +
+      '- Automated **type generation** for the HRMS app using Swagger reducing the amount of boiler plate code that needs to be written by the developers . \n' +
       '- Owned Outbound and Inventory hygiene related flows for the packer app.',
   },
   {
@@ -28,11 +29,11 @@ export const ExperienceData: Array<{ companyName: string; position: string; dura
     duration: "Jun'22 - Jul'24",
     details:
       '- Part of Lending and CS tech team. \n' +
-      '- As part of Lending team, owned development of credit cards home, rewards and Settings. \n' +
+      '- As part of Lending team, owned development of credit cards home, rewards and settings. \n' +
       '- Built a robust state management system for cards using **state machines**. \n' +
-      '- Built an app wide framework for **API response caching**, & remote config enabling offline usage and soft error handling.\n' +
+      '- Built an app wide framework for **API response caching**, & firebase remote config enabling offline usage and soft error handling.\n' +
       "- Built reusable components for Jupiter's Europa design system\n" +
-      '- Wrote scripts to automate change log generation. \n' +
+      '- Wrote scripts to automate change log generation for app releases. \n' +
       '- Wrote documentation for the frameworks mentioned above for their easier adoption, as well as to create standard practices across the codebase.',
   },
   {
@@ -42,18 +43,18 @@ export const ExperienceData: Array<{ companyName: string; position: string; dura
     details:
       '- Worked on revamping the **state management** of the AfterShoot app using **redux**.\n' +
       '- Setup **automation testing** for core app flows using playwright.\n' +
-      '- Built components like title bar for their Electron app from scratch.\n' +
       '- Built platform agnostic features like **drag and drop from and to app**.\n' +
-      '- Built domain specific features like hover for a zoomed preview. \n',
+      '- Built domain specific features like hover for a zoomed preview using HTML canvas, undo and redo. \n' +
+      '- Setup a component library using storybook.\n',
   },
   {
     companyName: 'Coinvise',
     position: 'SDE Intern',
     duration: "May'21 - Aug'21",
     details:
-      '- Built UI components & worked on the redesign of the Coinvise platform using NextJS, TypeScript, React, Tailwind.\n' +
-      '- Worked on integrating the frontend with the backend & **GraphQL** server.\n' +
-      '- Worked on integrating Ethereum Smart Contracts for the platform using Web3JS.',
+      '- Built UI components & worked on the redesign of the Coinvise platform.\n' +
+      '- Integrated **GraphQL** queries using react-query.\n' +
+      '- Integrating ethereum smart contracts for the platform using Web3JS.',
   },
   {
     companyName: 'Blue teak labs',

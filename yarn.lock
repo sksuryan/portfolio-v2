@@ -330,6 +330,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:4.17.15":
+  version: 4.17.15
+  resolution: "@types/lodash@npm:4.17.15"
+  checksum: 5037564154411f4ac0b187b914031c150520a7ca037dea007f774b7123c97c0da55b2e41ae81dc1bc80ff09e8d6a236455ea676d5062af12c592b8e81baec7bf
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.15
   resolution: "@types/mdast@npm:3.0.15"
@@ -2736,6 +2743,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
+  languageName: node
+  linkType: hard
+
 "loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
@@ -3398,6 +3412,7 @@ __metadata:
   resolution: "portfolio-v2@workspace:."
   dependencies:
     "@lottiefiles/dotlottie-react": 0.7.2
+    "@types/lodash": 4.17.15
     "@types/node": 20.11.1
     "@types/react": 18.3.12
     "@types/react-dom": 18.3.1
@@ -3405,6 +3420,7 @@ __metadata:
     clsx: 2.1.1
     eslint: 8.57.1
     eslint-config-next: 14.2.5
+    lodash: 4.17.21
     next: 14.2.18
     postcss: 8.4.49
     prettier: 3.3.3

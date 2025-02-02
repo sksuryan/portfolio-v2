@@ -4,6 +4,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import Stepper from '@/app/components/Stepper';
 import { useRemarkSync } from 'react-remark';
+import { debounce } from 'lodash';
 
 import { ExperienceData } from '@/utils/constants';
 
@@ -21,9 +22,18 @@ const ExperienceStepperContent: React.FC<Props> = props => {
   const detailsDiv: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   useEffect(() => {
-    if (detailsDiv.current?.clientHeight) {
-      setHeight(detailsDiv.current.clientHeight);
-    }
+    const debouncedHeightSetter = debounce(() => {
+      if (detailsDiv.current?.clientHeight) {
+        setHeight(detailsDiv.current.clientHeight);
+      }
+    }, 100);
+
+    const observer = new ResizeObserver(debouncedHeightSetter);
+    observer.observe(detailsDiv.current!);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const details = useRemarkSync(props.details, {
@@ -34,7 +44,7 @@ const ExperienceStepperContent: React.FC<Props> = props => {
           className,
           ...rest
         }: React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>) => (
-          <li className={clsx(className, 'font-thin [&_strong]:font-semibold')} {...rest}>
+          <li className={clsx(className, 'font-normal [&_strong]:font-bold')} {...rest}>
             {'✨'} {children}
           </li>
         ),
@@ -46,12 +56,15 @@ const ExperienceStepperContent: React.FC<Props> = props => {
     <div className={'pb-14'}>
       <div className={'cursor-pointer'} onClick={() => setExpand(state => !state)}>
         <h3 className={'text-lg font-semibold text-gray-950 dark:text-gray-50'}>{props.companyName}</h3>
-        <p className={'text-base font-light text-gray-700 dark:text-gray-300'}>
+        <p className={'text-base font-normal text-gray-700 dark:text-gray-300'}>
           {props.position} | {props.duration}
         </p>
       </div>
       <div
-        className={'overflow-hidden transition-all ease-out duration-200'}
+        className={clsx('overflow-hidden transition-all ease-out duration-500', {
+          'opacity-0': !expand,
+          'opacity-100': expand,
+        })}
         style={{ height: expand ? `${height}px` : '0px' }}
       >
         <div ref={detailsDiv} className={'text-gray-900 dark:text-gray-100 pt-3 text-base'}>
