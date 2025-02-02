@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { isNil } from 'lodash';
+import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { Links } from '@/utils/constants';
 import { Lotties } from '@/assets/lotties';
@@ -20,11 +21,42 @@ const LinkIcons: React.FC<LinkIconProps> = props => {
 };
 
 const HeroContent = () => {
+  const lottieRef = useRef<HTMLDivElement | null>(null);
+  const [lottie, setLottie] = useState<DotLottie | null>(null);
+
+  useEffect(() => {
+    // if references are nil, return
+    if (isNil(lottieRef?.current)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        console.log(entries);
+        if (entries[0].isIntersecting) {
+          lottie?.play();
+        }
+      },
+      { rootMargin: '-25%' },
+    );
+
+    observer.observe(lottieRef.current!);
+    lottie?.play();
+
+    return () => observer.disconnect();
+  }, [lottie]);
+
   return (
     <div className={'h-[100vh] grid items-center'}>
       <div>
-        <DotLottieReact autoplay loop className={'h-[64px] w-[64px] mb-6'} src={Lotties.HELLO} />
-
+        <div ref={lottieRef}>
+          <DotLottieReact
+            dotLottieRefCallback={setLottie}
+            className={'h-[64px] w-[64px] mb-6'}
+            src={Lotties.HELLO}
+            autoplay
+          />
+        </div>
         <h1 className={'text-3xl font-bold text-pink-600 dark:text-pink-400'}>
           <span className={'font-normal text-black dark:text-white'}>I&apos;m</span> Saurabh Kumar Suryan
         </h1>

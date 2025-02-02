@@ -83,7 +83,7 @@ const Experience = () => {
   }));
 
   return (
-    <div className={'h-[100vh]'}>
+    <div className={'py-60'}>
       <h1 className={'text-2xl font-bold dark:text-gray-100'}>experience</h1>
       <div className={'mt-8'}>
         <Stepper data={stepperData} />
