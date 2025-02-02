@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import Stepper from '@/app/components/Stepper';
-import { ExperienceData } from '@/utils/constants';
-import { useRemarkSync } from 'react-remark';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import Stepper from '@/app/components/Stepper';
+import { useRemarkSync } from 'react-remark';
+
+import { ExperienceData } from '@/utils/constants';
 
 type Props = {
   companyName: string;
@@ -15,7 +16,15 @@ type Props = {
 
 const ExperienceStepperContent: React.FC<Props> = props => {
   const [expand, setExpand] = useState(false);
-  const isMounted = useRef(false);
+
+  const [height, setHeight] = useState(0);
+  const detailsDiv: MutableRefObject<HTMLDivElement | null> = useRef(null);
+
+  useEffect(() => {
+    if (detailsDiv.current?.clientHeight) {
+      setHeight(detailsDiv.current.clientHeight);
+    }
+  }, []);
 
   const details = useRemarkSync(props.details, {
     rehypeReactOptions: {
@@ -33,12 +42,8 @@ const ExperienceStepperContent: React.FC<Props> = props => {
     },
   });
 
-  useEffect(() => {
-    isMounted.current = true;
-  }, []);
-
   return (
-    <div className={'pb-14 transition-all'}>
+    <div className={'pb-14'}>
       <div className={'cursor-pointer'} onClick={() => setExpand(state => !state)}>
         <h3 className={'text-lg font-semibold text-gray-950 dark:text-gray-50'}>{props.companyName}</h3>
         <p className={'text-base font-light text-gray-700 dark:text-gray-300'}>
@@ -46,12 +51,12 @@ const ExperienceStepperContent: React.FC<Props> = props => {
         </p>
       </div>
       <div
-        className={clsx('text-gray-900 dark:text-gray-100 mt-3 text-base overflow-hidden transition-all', {
-          'max-h-[100%]': expand,
-          'max-h-0': !expand && isMounted.current,
-        })}
+        className={'overflow-hidden transition-all ease-out duration-200'}
+        style={{ height: expand ? `${height}px` : '0px' }}
       >
-        {details}
+        <div ref={detailsDiv} className={'text-gray-900 dark:text-gray-100 pt-3 text-base'}>
+          {details}
+        </div>
       </div>
     </div>
   );

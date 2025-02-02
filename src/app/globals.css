@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    interpolate-size: allow-keywords;
-}
-
 html {
     font-size: 13px;
 

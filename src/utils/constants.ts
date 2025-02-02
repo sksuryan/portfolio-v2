@@ -14,25 +14,25 @@ export const Links: Array<{ iconUri: string; alt: string; link: string }> = [
 export const ExperienceData: Array<{ companyName: string; position: string; duration: string; details: string }> = [
   {
     companyName: 'Zepto',
-    position: 'SE Frontend',
+    position: 'SDE Frontend',
     duration: "Jul'24 - present",
     details:
       '- Currently part of the **Supply chain org** working on the packer app.\n' +
       '- Wrote **error boundary** to detect app crashes and log them to sentry and mixpanel.\n' +
       '- Wrote **GitHub actions** to automate build generation for android builds using fastlane. \n' +
-      '- Owning Outbound picking and Cycle count related flows for the packer app.',
+      '- Owned Outbound and Inventory hygiene related flows for the packer app.',
   },
   {
     companyName: 'Jupiter Money',
     position: 'SDE 2',
     duration: "Jun'22 - Jul'24",
     details:
-      '- Was part of Lending and CS tech team. \n' +
+      '- Part of Lending and CS tech team. \n' +
       '- As part of Lending team, owned development of credit cards home, rewards and Settings. \n' +
       '- Built a robust state management system for cards using **state machines**. \n' +
       '- Built an app wide framework for **API response caching**, & remote config enabling offline usage and soft error handling.\n' +
       "- Built reusable components for Jupiter's Europa design system\n" +
-      '- Wrote scripts to automate changelog generation. \n' +
+      '- Wrote scripts to automate change log generation. \n' +
       '- Wrote documentation for the frameworks mentioned above for their easier adoption, as well as to create standard practices across the codebase.',
   },
   {
@@ -76,5 +76,3 @@ export const ExperienceData: Array<{ companyName: string; position: string; dura
       '- Built **6 projects** with various tech stacks including React Native, React, SCSS, Node over a span of 2 months.',
   },
 ];
-
-export const HI_ICON_URI = 'https://lottie.host/9b2faaf0-59e4-4ef7-ad11-3df3105a75fa/JCN2Z08q9x.lottie';

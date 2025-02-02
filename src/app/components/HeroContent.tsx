@@ -4,7 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-import { HI_ICON_URI, Links } from '@/utils/constants';
+import { Links } from '@/utils/constants';
+import { Lotties } from '@/assets/lotties';
 
 type LinkIconProps = { iconUri: string; alt: string; link: string };
 
@@ -22,7 +23,7 @@ const HeroContent = () => {
   return (
     <div className={'h-[100vh] grid items-center'}>
       <div>
-        <DotLottieReact autoplay loop className={'h-[64px] w-[64px] mb-6'} src={HI_ICON_URI} />
+        <DotLottieReact autoplay loop className={'h-[64px] w-[64px] mb-6'} src={Lotties.HELLO} />
 
         <h1 className={'text-3xl font-bold text-pink-600 dark:text-pink-400'}>
           <span className={'font-normal text-black dark:text-white'}>I&apos;m</span> Saurabh Kumar Suryan
