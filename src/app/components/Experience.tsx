@@ -9,6 +9,7 @@ import { debounce } from 'lodash';
 import { ExperienceData } from '@/utils/constants';
 
 type Props = {
+  isActive: boolean;
   companyName: string;
   position: string;
   duration: string;
@@ -16,7 +17,7 @@ type Props = {
 };
 
 const ExperienceStepperContent: React.FC<Props> = props => {
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState(props.isActive);
 
   const [height, setHeight] = useState(0);
   const detailsDiv: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -77,7 +78,7 @@ const ExperienceStepperContent: React.FC<Props> = props => {
 
 const Experience = () => {
   const stepperData = ExperienceData.map((i, k) => ({
-    content: <ExperienceStepperContent {...i} />,
+    content: <ExperienceStepperContent {...i} isActive={k === 0} />,
     isActive: k === 0,
     isDone: false,
   }));
