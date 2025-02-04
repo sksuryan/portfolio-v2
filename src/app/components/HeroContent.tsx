@@ -8,7 +8,7 @@ import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Links } from '@/utils/constants';
 import { Lotties } from '@/assets/lotties';
 import { analytics } from '@/utils/analytics';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 type LinkIconProps = { iconUri: string; alt: string; link: string };
 
