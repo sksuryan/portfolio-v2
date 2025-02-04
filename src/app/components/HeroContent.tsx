@@ -7,12 +7,20 @@ import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { Links } from '@/utils/constants';
 import { Lotties } from '@/assets/lotties';
+import { analytics } from '@/utils/analytics';
 
 type LinkIconProps = { iconUri: string; alt: string; link: string };
 
 const LinkIcons: React.FC<LinkIconProps> = props => {
   return (
-    <a href={props.link} target={'_blank'} rel="noreferrer">
+    <a
+      href={props.link}
+      onClick={() => {
+        analytics.track('lint_clicked', { type: props.link, debug: true });
+      }}
+      target={'_blank'}
+      rel="noreferrer"
+    >
       <div className={'relative w-[24px] h-[24px] lg:w-[28px] lg:h-[28px]'}>
         <Image src={props.iconUri} fill={true} alt={props.alt} className={'dark:invert-[1] object-contain'} />
       </div>
@@ -25,6 +33,10 @@ const HeroContent = () => {
   const [lottie, setLottie] = useState<DotLottie | null>(null);
 
   useEffect(() => {
+    analytics.track('page_viewed', { referrer: 'nil' });
+  }, []);
+
+  useEffect(() => {
     // if references are nil, return
     if (isNil(lottieRef?.current)) {
       return;
@@ -32,7 +44,6 @@ const HeroContent = () => {
 
     const observer = new IntersectionObserver(
       entries => {
-        console.log(entries);
         if (entries[0].isIntersecting) {
           lottie?.play();
         }

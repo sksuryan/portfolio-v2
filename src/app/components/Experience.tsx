@@ -7,6 +7,7 @@ import { useRemarkSync } from 'react-remark';
 import { debounce } from 'lodash';
 
 import { ExperienceData } from '@/utils/constants';
+import { analytics } from '@/utils/analytics';
 
 type Props = {
   isActive: boolean;
@@ -55,7 +56,13 @@ const ExperienceStepperContent: React.FC<Props> = props => {
 
   return (
     <div className={'pb-14'}>
-      <div className={'cursor-pointer'} onClick={() => setExpand(state => !state)}>
+      <div
+        className={'cursor-pointer'}
+        onClick={() => {
+          analytics.track('option_clicked', { company_name: props.companyName, is_expanded: !expand });
+          setExpand(state => !state);
+        }}
+      >
         <h3 className={'text-lg font-semibold text-gray-950 dark:text-gray-50'}>{props.companyName}</h3>
         <p className={'text-base font-normal text-gray-700 dark:text-gray-300'}>
           {props.position} | {props.duration}
