@@ -8,6 +8,7 @@ import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Links } from '@/utils/constants';
 import { Lotties } from '@/assets/lotties';
 import { analytics } from '@/utils/analytics';
+import { useParams, useSearchParams } from 'next/navigation';
 
 type LinkIconProps = { iconUri: string; alt: string; link: string };
 
@@ -29,12 +30,14 @@ const LinkIcons: React.FC<LinkIconProps> = props => {
 };
 
 const HeroContent = () => {
+  const params = useSearchParams();
   const lottieRef = useRef<HTMLDivElement | null>(null);
   const [lottie, setLottie] = useState<DotLottie | null>(null);
 
   useEffect(() => {
-    analytics.track('page_viewed', { referrer: 'nil' });
-  }, []);
+    const referrer = params.get('referrer');
+    analytics.track('page_viewed', { referrer: referrer ?? 'nil' });
+  }, [params]);
 
   useEffect(() => {
     // if references are nil, return
