@@ -16,9 +16,7 @@ const LinkIcons: React.FC<LinkIconProps> = props => {
   return (
     <a
       href={props.link}
-      onClick={() => {
-        analytics.track('lint_clicked', { type: props.link, debug: true });
-      }}
+      onClick={() => analytics.track('lint_clicked', { type: props.link })}
       target={'_blank'}
       rel="noreferrer"
     >
