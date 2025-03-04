@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { isNil } from 'lodash';
+import { isEmpty, isNil } from 'lodash';
 import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { Links } from '@/utils/constants';
@@ -33,8 +33,10 @@ const HeroContent = () => {
   const [lottie, setLottie] = useState<DotLottie | null>(null);
 
   useEffect(() => {
-    const referrer = params.get('referrer');
-    analytics.track('page_viewed', { referrer: referrer ?? 'nil' });
+    if (typeof document !== 'undefined') {
+      const referrer = (params.get('referrer') ?? isEmpty(document.referrer)) ? 'nil' : document.referrer;
+      analytics.track('page_viewed', { referrer: referrer ?? 'nil' });
+    }
   }, [params]);
 
   useEffect(() => {
